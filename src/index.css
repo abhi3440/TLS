@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: 37, 99, 235;
+  --secondary: 91, 33, 182;
+  --accent: 139, 92, 246;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .container {
+    @apply px-4 mx-auto max-w-7xl sm:px-6 lg:px-8;
+  }
+  
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-blue-600 border border-blue-600 hover:bg-blue-50 focus:ring-blue-500;
+  }
+  
+  .section-title {
+    @apply text-3xl sm:text-4xl font-bold text-gray-900 mb-4;
+  }
+  
+  .section-subtitle {
+    @apply text-lg text-gray-600 max-w-3xl mx-auto;
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden;
+  }
+}
+
+/* Ensure elements are visible by default */
+[style*="opacity: 0"] {
+  opacity: 1 !important;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
