@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
       >
         <div className="container flex items-center justify-between">
           <a href="#" className="flex items-center">
-             <img src="public\logo.png" alt="Logo" className="h-10 w-auto" style={{ maxHeight: '40px' }}/>
+             <img src="/TLS/logo.png" alt="Logo" className="h-10 w-auto" style={{ maxHeight: '40px' }}/>
           </a>
 
           <nav className="hidden md:flex space-x-8">
