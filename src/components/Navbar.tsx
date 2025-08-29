@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUp } from 'lucide-react';
+import logo from '../assets/logo.png'; // Import the logo
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,7 +50,8 @@ const Navbar: React.FC = () => {
       >
         <div className="container flex items-center justify-between">
           <a href="#" className="flex items-center">
-             <img src="/TLS/logo.png" alt="Logo" className="h-10 w-auto" style={{ maxHeight: '40px' }}/>
+            {/* Use the imported logo variable here */}
+            <img src={logo} alt="Logo" className="h-10 w-auto" style={{ maxHeight: '40px' }}/>
           </a>
 
           <nav className="hidden md:flex space-x-8">
