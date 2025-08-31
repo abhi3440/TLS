@@ -50,8 +50,8 @@ const Navbar: React.FC = () => {
       >
         <div className="container flex items-center justify-between">
           <a href="#" className="flex items-center">
-            {/* Use the imported logo variable here */}
-            <img src={logo} alt="Logo" className="h-10 w-auto" style={{ maxHeight: '40px' }}/>
+            <img src={logo} alt="Logo" className="h-10 w-auto" style={{ maxHeight: '40px' }} />
+            <span className="ml-2 text-2xl font-bold text-blue-700">Tech Link Solutions</span>
           </a>
 
           <nav className="hidden md:flex space-x-8">

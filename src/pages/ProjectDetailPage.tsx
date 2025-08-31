@@ -23,6 +23,33 @@ const ProjectDetailPage: React.FC = () => {
       </div>
     );
   }
+  
+  const renderContent = (content: string) => {
+    return <span className="text-gray-700 text-lg leading-relaxed" dangerouslySetInnerHTML={{ __html: content }} />;
+  };
+
+  // Helper to safely access gallery images
+  const getGalleryImage = (index: number) => {
+    return Array.isArray(project.galleryImages) && project.galleryImages.length > index 
+      ? project.galleryImages[index] 
+      : null;
+  };
+
+  // Helper to safely access content sections
+  const getSection = (index: number) => {
+    return Array.isArray(project.details?.sections) && project.details.sections.length > index
+      ? project.details.sections[index]
+      : null;
+  };
+
+  const heroImage = getGalleryImage(0);
+  const instagramImage = getGalleryImage(1);
+  const amazonImage = getGalleryImage(2);
+  const backendImage = getGalleryImage(3);
+
+  const howWeScaledSection = getSection(0);
+  const keyResultsSection = getSection(1);
+
 
   return (
     <div className="bg-white pt-32 pb-16">
@@ -36,48 +63,98 @@ const ProjectDetailPage: React.FC = () => {
         </button>
 
         <header className="mb-12 text-center">
-          <div className="flex justify-center flex-wrap gap-2 mb-4">
-            {project.tags.map((tag, tagIndex) => (
-              <span 
-                key={tagIndex}
-                className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm font-medium"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+          {Array.isArray(project.tags) && (
+            <div className="flex justify-center flex-wrap gap-2 mb-4">
+              {project.tags.map((tag, tagIndex) => (
+                <span key={tagIndex} className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm font-medium">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
           <h1 className="text-4xl md:text-5xl font-bold mb-2">{project.title}</h1>
           <p className="text-xl text-gray-600">{project.client}</p>
         </header>
 
-        <div className="mb-12">
-          <img 
-            src={project.image} 
-            alt={project.title}
-            className="w-full h-auto max-h-[500px] object-cover rounded-xl shadow-lg"
-          />
-        </div>
-
         <div className="max-w-4xl mx-auto">
-            <div className="mb-10">
-              <h2 className="text-3xl font-bold mb-4">About the Project</h2>
-              {project.details.about.map((paragraph, index) => (
+          {/* 1. Immersive Hero Image */}
+          {heroImage && (
+            <div className="mb-12">
+              <img 
+                src={heroImage}
+                alt={`${project.title} hero`}
+                className="w-full h-auto max-h-[500px] object-cover rounded-xl shadow-lg"
+              />
+            </div>
+          )}
+
+          {/* 2. About Section */}
+          {project.details?.about && (
+            <div className="mb-12">
+              <h2 className="text-3xl font-bold mb-4">{project.details.about.title}</h2>
+              {Array.isArray(project.details.about.content) && project.details.about.content.map((paragraph, index) => (
                  <p key={index} className="text-gray-700 text-lg mb-4 leading-relaxed">{paragraph}</p>
               ))}
             </div>
-            <div>
-              <h2 className="text-3xl font-bold mb-4">Our Contribution</h2>
-               <ul className="space-y-3">
-                {project.details.contribution.map((item, i) => (
-                  <li key={i} className="flex items-start">
-                    <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
-                      <Check className="w-4 h-4 text-green-600" />
-                    </div>
-                    <span className="text-gray-700 text-lg leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          )}
+
+          {/* 3. Second Interspersed Image (Instagram) */}
+          {instagramImage && (
+              <div className="my-12">
+                  <img 
+                      src={instagramImage} 
+                      alt="Project Instagram presence"
+                      className="w-full h-auto rounded-xl shadow-lg" 
+                  />
+              </div>
+          )}
+          
+          {/* 4. "How We Scaled" Section */}
+          {howWeScaledSection && (
+              <div className="mb-12">
+                  <h2 className="text-3xl font-bold mb-4">{howWeScaledSection.title}</h2>
+                  {Array.isArray(howWeScaledSection.content) && (
+                    <ul className="space-y-4">
+                      {howWeScaledSection.content.map((item, i) => (
+                        <li key={i} className="flex items-start">
+                          <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                            <Check className="w-4 h-4 text-green-600" />
+                          </div>
+                          {renderContent(item)}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+              </div>
+          )}
+
+          {/* 5. Last two images side-by-side (Amazon & Backend) */}
+          {amazonImage && backendImage && (
+              <div className="my-16 grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <img src={amazonImage} alt="Project Amazon listing" className="rounded-xl shadow-lg" />
+                  <img src={backendImage} alt="Project e-commerce backend" className="rounded-xl shadow-lg" />
+              </div>
+          )}
+
+          {/* 6. "Key Results" Section */}
+          {keyResultsSection && (
+              <div className="mb-12">
+                  <h2 className="text-3xl font-bold mb-4">{keyResultsSection.title}</h2>
+                  {Array.isArray(keyResultsSection.content) && (
+                    <ul className="space-y-4">
+                      {keyResultsSection.content.map((item, i) => (
+                        <li key={i} className="flex items-start">
+                          <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                            <Check className="w-4 h-4 text-green-600" />
+                          </div>
+                          {renderContent(item)}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+              </div>
+          )}
+
         </div>
       </div>
     </div>
