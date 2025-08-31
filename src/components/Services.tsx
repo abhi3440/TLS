@@ -26,27 +26,27 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, del
       { threshold: 0.1 }
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
+    const currentRef = cardRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [delay]);
 
   return (
     <div 
-      className="card p-6 flex flex-col h-full" 
+      className="card p-6 flex flex-col h-full text-center items-center" 
       ref={cardRef}
-      style={{ opacity: 0 }}
     >
-      <div className="bg-blue-50 text-blue-600 p-3 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
+      <div className="bg-blue-100 text-blue-700 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-5">
         {icon}
       </div>
-      <h3 className="text-xl font-semibold mb-3">{title}</h3>
+      <h3 className="text-xl font-semibold text-gray-800 mb-3">{title}</h3>
       <p className="text-gray-600 flex-grow">{description}</p>
     </div>
   );
@@ -67,35 +67,36 @@ const Services: React.FC = () => {
       { threshold: 0.1 }
     );
 
-    if (titleRef.current) {
-      observer.observe(titleRef.current);
+    const currentRef = titleRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (titleRef.current) {
-        observer.unobserve(titleRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
 
   const services = [
     {
-      icon: <Users size={24} />,
+      icon: <Users size={28} />,
       title: "Social Media Management",
       description: "Build your brand voice and community through strategic content creation and engagement."
     },
     {
-      icon: <BarChart3 size={24} />,
+      icon: <BarChart3 size={28} />,
       title: "Performance Marketing",
       description: "ROI-focused paid ads that convert across multiple platforms and touchpoints."
     },
     {
-      icon: <Search size={24} />,
+      icon: <Search size={28} />,
       title: "AI-powered SEO",
       description: "Rank faster, smarter with geo-targeted strategies and advanced AI techniques."
     },
     {
-      icon: <ShoppingBag size={24} />,
+      icon: <ShoppingBag size={28} />,
       title: "E-Commerce Website Building",
       description: "Custom, conversion-ready storefronts designed to maximize sales and user experience."
     }
@@ -107,7 +108,6 @@ const Services: React.FC = () => {
         <div 
           className="text-center mb-12" 
           ref={titleRef}
-          style={{ opacity: 0 }}
         >
           <h2 className="section-title">What We Do Best</h2>
           <p className="section-subtitle">

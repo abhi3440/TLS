@@ -7,6 +7,7 @@ export default {
         inter: ['Inter', 'sans-serif'],
       },
       colors: {
+        // Primary brand blue, used for buttons, links, and accents
         blue: {
           50: '#eff6ff',
           100: '#dbeafe',
@@ -17,19 +18,19 @@ export default {
           600: '#2563eb',
           700: '#1d4ed8',
           800: '#1e40af',
-          900: '#1e3a8a',
+          900: '#111827', // Darker blue for footer
         },
-        purple: {
-          50: '#f5f3ff',
-          100: '#ede9fe',
-          200: '#ddd6fe',
-          300: '#c4b5fd',
-          400: '#a78bfa',
-          500: '#8b5cf6',
-          600: '#7c3aed',
-          700: '#6d28d9',
-          800: '#5b21b6',
-          900: '#4c1d95',
+        // Secondary accent for gradients
+        teal: {
+          400: '#2dd4bf',
+          500: '#14b8a6',
+        },
+        // Grays for text and backgrounds
+        gray: {
+          50: '#f9fafb',
+          100: '#f3f4f6',
+          200: '#e5e7eb',
+          // ... (default grays are usually sufficient)
         },
       },
       animation: {
@@ -37,18 +38,10 @@ export default {
       },
       keyframes: {
         blob: {
-          '0%': {
-            transform: 'translate(0px, 0px) scale(1)',
-          },
-          '33%': {
-            transform: 'translate(30px, -50px) scale(1.1)',
-          },
-          '66%': {
-            transform: 'translate(-20px, 20px) scale(0.9)',
-          },
-          '100%': {
-            transform: 'translate(0px, 0px) scale(1)',
-          },
+          '0%': { transform: 'translate(0px, 0px) scale(1)' },
+          '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+          '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+          '100%': { transform: 'translate(0px, 0px) scale(1)' },
         },
       },
     },

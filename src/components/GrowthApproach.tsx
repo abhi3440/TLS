@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { LineChart, Lightbulb, Activity, TrendingUp } from 'lucide-react';
+import { LineChart, Lightbulb, Activity, TrendingUp, Check } from 'lucide-react';
 
 interface StepProps {
   icon: React.ReactNode;
@@ -14,27 +14,27 @@ const Step: React.FC<StepProps> = ({ icon, title, description, step, isActive, o
   return (
     <div 
       className={`relative flex flex-col items-center text-center cursor-pointer transition-all duration-300 ${
-        isActive ? 'scale-105' : 'opacity-70 hover:opacity-100'
+        isActive ? 'scale-105' : 'opacity-80 hover:opacity-100'
       }`}
       onClick={onClick}
     >
       <div 
         className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-all duration-300 ${
           isActive 
-            ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' 
-            : 'bg-gray-100 text-gray-500'
+            ? 'bg-blue-700 text-white shadow-lg shadow-blue-200' 
+            : 'bg-gray-200 text-gray-500'
         }`}
       >
         {icon}
       </div>
       
-      <h3 className={`text-xl font-semibold mb-2 ${isActive ? 'text-blue-600' : 'text-gray-700'}`}>
+      <h3 className={`text-xl font-semibold mb-2 ${isActive ? 'text-blue-700' : 'text-gray-800'}`}>
         {title}
       </h3>
       
       <p className="text-gray-600 max-w-xs">{description}</p>
       
-      <div className="mt-4 font-semibold text-sm">
+      <div className="mt-4 font-semibold text-sm text-gray-500">
         Step {step}
       </div>
     </div>
@@ -57,13 +57,14 @@ const GrowthApproach: React.FC = () => {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentRef = sectionRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -71,7 +72,7 @@ const GrowthApproach: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveStep((prev) => (prev % 4) + 1);
-    }, 3000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
@@ -105,7 +106,6 @@ const GrowthApproach: React.FC = () => {
         <div 
           className="text-center mb-16"
           ref={sectionRef}
-          style={{ opacity: 0 }}
         >
           <h2 className="section-title">Our Method to Scale</h2>
           <p className="section-subtitle">
@@ -114,10 +114,9 @@ const GrowthApproach: React.FC = () => {
         </div>
 
         <div className="relative">
-          {/* Progress bar */}
           <div className="hidden md:block absolute top-8 left-0 w-full h-1 bg-gray-200">
             <div 
-              className="h-full bg-blue-600 transition-all duration-500"
+              className="h-full bg-blue-700 transition-all duration-500"
               style={{ width: `${(activeStep - 1) * 33.33}%` }}
             ></div>
           </div>
@@ -139,23 +138,16 @@ const GrowthApproach: React.FC = () => {
 
         <div className="mt-16 bg-white rounded-xl shadow-md overflow-hidden">
           <div className="md:flex">
-            <div className="md:w-1/2 bg-gradient-to-br from-blue-600 to-purple-600 text-white p-8">
+            <div className="md:w-1/2 bg-blue-700 text-white p-8">
               <h3 className="text-2xl font-bold mb-4">Why Our Approach Works</h3>
-              <p className="mb-6">
-                Our method has been refined through years of experience working with brands across different industries. We focus on what matters: measurable results and sustainable growth.
+              <p className="mb-6 opacity-90">
+                Our method has been refined through years of experience. We focus on what matters: measurable results and sustainable growth.
               </p>
               <ul className="space-y-3">
-                {[
-                  'Data-driven decision making',
-                  'Channel-specific expertise',
-                  'Continuous optimization',
-                  'Scalable strategies'
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center">
-                    <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center mr-3">
-                      <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                      </svg>
+                {['Data-driven decision making', 'Channel-specific expertise', 'Continuous optimization', 'Scalable strategies'].map((item) => (
+                  <li key={item} className="flex items-center">
+                    <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center mr-3 flex-shrink-0">
+                      <Check className="w-4 h-4 text-white" />
                     </div>
                     {item}
                   </li>
@@ -163,7 +155,7 @@ const GrowthApproach: React.FC = () => {
               </ul>
             </div>
             <div className="md:w-1/2 p-8">
-              <h3 className="text-2xl font-bold mb-4">Results You Can Expect</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">Results You Can Expect</h3>
               <div className="space-y-4">
                 {[
                   { metric: 'Increase in conversion rate', value: '35-75%' },
@@ -171,9 +163,9 @@ const GrowthApproach: React.FC = () => {
                   { metric: 'Reduction in customer acquisition cost', value: '15-40%' },
                   { metric: 'Improvement in ROAS', value: '2-4x' }
                 ].map((item, i) => (
-                  <div key={i} className="flex justify-between items-center">
-                    <span className="text-gray-700">{item.metric}</span>
-                    <span className="text-blue-600 font-bold">{item.value}</span>
+                  <div key={i} className="flex justify-between items-center text-gray-700">
+                    <span>{item.metric}</span>
+                    <span className="text-blue-700 font-bold">{item.value}</span>
                   </div>
                 ))}
               </div>
