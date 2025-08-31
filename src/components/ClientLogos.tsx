@@ -46,7 +46,7 @@ const ClientLogos: React.FC = () => {
   ];
 
   return (
-    <section id="portfolio" className="py-20 bg-white">
+    <section className="py-20 bg-white">
       <div className="container">
         <div 
           className="text-center mb-12"

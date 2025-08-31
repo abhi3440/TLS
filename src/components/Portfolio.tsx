@@ -1,44 +1,11 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { projects } from '../data/projects.ts';
 
 const Portfolio: React.FC = () => {
-  const projects = [
-    {
-      title: "E-Commerce Platform Redesign",
-      client: "Fashion Retailer",
-      description: "Complete redesign and development of an e-commerce platform, resulting in 40% increase in conversion rate.",
-      image: "https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      tags: ["E-commerce", "UI/UX", "Web Development"],
-      link: "#"
-    },
-    {
-      title: "Social Media Growth Campaign",
-      client: "Food & Beverage Brand",
-      description: "Strategic social media campaign that grew following by 200% and engagement by 150% in 3 months.",
-      image: "https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      tags: ["Social Media", "Content Strategy", "Growth"],
-      link: "#"
-    },
-    {
-      title: "SaaS Marketing Website",
-      client: "Tech Startup",
-      description: "Design and development of a high-converting marketing website that increased demo signups by 80%.",
-      image: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      tags: ["Web Design", "Development", "SaaS"],
-      link: "#"
-    },
-    {
-      title: "Brand Identity Design",
-      client: "Wellness Company",
-      description: "Complete brand identity redesign including logo, guidelines, and marketing materials.",
-      image: "https://images.pexels.com/photos/1037992/pexels-photo-1037992.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      tags: ["Branding", "Design", "Identity"],
-      link: "#"
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-gray-50 pt-20">
+    <section id="portfolio" className="bg-gray-50 pt-20">
       <div className="container py-16">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Portfolio</h1>
@@ -71,35 +38,18 @@ const Portfolio: React.FC = () => {
                 <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
                 <p className="text-gray-600 mb-4">{project.client}</p>
                 <p className="text-gray-700 mb-6">{project.description}</p>
-                <a 
-                  href={project.link}
+                <Link 
+                  to={`/project/${project.id}`}
                   className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
                 >
                   View Project <ExternalLink size={18} className="ml-2" />
-                </a>
+                </Link>
               </div>
             </div>
           ))}
         </div>
-
-        <div className="mt-16 bg-white rounded-xl p-8 shadow-lg">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-4">Let's Create Something Amazing</h2>
-            <p className="text-xl text-gray-600">
-              Ready to start your next project? We'd love to hear from you.
-            </p>
-          </div>
-          <div className="flex justify-center">
-            <a 
-              href="#contact" 
-              className="btn btn-primary"
-            >
-              Get in Touch
-            </a>
-          </div>
-        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
