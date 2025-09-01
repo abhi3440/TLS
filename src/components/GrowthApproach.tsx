@@ -135,43 +135,9 @@ const GrowthApproach: React.FC = () => {
             ))}
           </div>
         </div>
+        
+      
 
-        <div className="mt-16 bg-white rounded-xl shadow-md overflow-hidden">
-          <div className="md:flex">
-            <div className="md:w-1/2 bg-blue-700 text-white p-8">
-              <h3 className="text-2xl font-bold mb-4">Why Our Approach Works</h3>
-              <p className="mb-6 opacity-90">
-                Our method has been refined through years of experience. We focus on what matters: measurable results and sustainable growth.
-              </p>
-              <ul className="space-y-3">
-                {['Data-driven decision making', 'Channel-specific expertise', 'Continuous optimization', 'Scalable strategies'].map((item) => (
-                  <li key={item} className="flex items-center">
-                    <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center mr-3 flex-shrink-0">
-                      <Check className="w-4 h-4 text-white" />
-                    </div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="md:w-1/2 p-8">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Results You Can Expect</h3>
-              <div className="space-y-4">
-                {[
-                  { metric: 'Increase in conversion rate', value: '35-75%' },
-                  { metric: 'Growth in organic traffic', value: '50-200%' },
-                  { metric: 'Reduction in customer acquisition cost', value: '15-40%' },
-                  { metric: 'Improvement in ROAS', value: '2-4x' }
-                ].map((item, i) => (
-                  <div key={i} className="flex justify-between items-center text-gray-700">
-                    <span>{item.metric}</span>
-                    <span className="text-blue-700 font-bold">{item.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
