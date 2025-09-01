@@ -15,22 +15,22 @@ export interface Project {
   galleryImages?: string[];
   details: {
     about: { title: string; content: string[] };
-    sections: { title: string; content: string[] }[];
+    // Updated structure for sections
+    sections: { title: string; subsections?: { subtitle: string; content: string[] }[], content?: string[] }[];
   };
 }
+
 
 export const projects: Project[] = [
   {
     id: "ecommerce-platform-redesign",
-    title: "E-Commerce Platform Redesign",
-    client: "Fashion Retailer",
-    description: "Complete redesign and development of an e-commerce platform, resulting in 40% increase in conversion rate.",
-    // Use the imported image variable for the portfolio grid
+    title: "E-Commerce Platform ",
+    client: "Sweatastic",
+    description: "Complete redesign and development of an e-commerce platform, resulting in a 40% increase in conversion rate.",
     image: sweatasticHero, 
     tags: ["E-commerce", "UI/UX", "Web Development"],
     link: "#",
     
-    // Use the imported image variables for the detail page gallery
     galleryImages: [
       sweatasticHero,
       sweatasticInstagram,
@@ -39,7 +39,7 @@ export const projects: Project[] = [
     ],
     details: {
       about: {
-        title: "About the Brand: Sweatastic",
+        title: "About the Brand",
         content: [
           "Sweatastic is an emerging activewear brand built with a vision to unite fitness enthusiasts through high-quality apparel, community-driven initiatives, and an active lifestyle.",
           "When they approached us, the goal was clear: to create a strong online presence, build a sales-driven platform, and scale their business across digital channels."
@@ -48,12 +48,44 @@ export const projects: Project[] = [
       sections: [
         {
           title: "How We Built & Scaled Sweatastic",
-          content: [
-            "<strong>Website Development & E-commerce Setup:</strong> We created a responsive, high-converting e-commerce platform with a clean, modern interface, seamless navigation, and secure checkout to reflect the brand's premium identity.",
-            "<strong>Social Media Management & Content Strategy:</strong> We positioned Sweatastic as a fitness community by curating a content mix of lifestyle posts, product highlights, and fitness challenges, engaging followers through polls, reels, and live sessions.",
-            "<strong>Influencer & Affiliate Marketing:</strong> To expand reach, we onboarded fitness influencers as brand partners and built a commission-based affiliate program, leveraging authentic content to boost trust and conversions.",
-            "<strong>Paid & Organic E-commerce Growth:</strong> We ran high-ROI paid campaigns on Meta & Google, optimized SEO for long-term organic traffic, and implemented remarketing strategies to foster repeat customers."
-          ],
+          subsections: [
+            {
+              subtitle: "1. Website Development & E-commerce Setup",
+              content: [
+                "Created a responsive and high-converting e-commerce platform at sweatastic.in.",
+                "Designed a clean, modern interface that reflects the brand's premium identity.",
+                "Integrated seamless navigation, secure checkout, and mobile optimization.",
+                "Structured product pages to highlight fabric quality, features, and brand story.",
+                "Implemented analytics & tracking to measure customer behavior and conversions."
+              ]
+            },
+            {
+              subtitle: "2. Social Media Management & Content Strategy",
+              content: [
+                "Positioned Sweatastic as a fitness community, not just an apparel brand.",
+                "Curated a content mix of lifestyle posts, product highlights, and fitness challenges.",
+                "Engaged followers through polls, reels, live sessions, and fitness tips.",
+                "Established a brand voice that resonates with fitness enthusiasts."
+              ]
+            },
+            {
+              subtitle: "3. Influencer & Affiliate Marketing",
+              content: [
+                "Onboarded fitness influencers and athletes as brand partners.",
+                "Built a commission-based affiliate program to incentivize sales.",
+                "Leveraged authentic influencer content to boost trust and conversions, delivering a 30% sales increase."
+              ]
+            },
+            {
+              subtitle: "4. Paid & Organic E-commerce Growth",
+              content: [
+                "Ran high-ROI paid campaigns on Meta & Google Ads.",
+                "Optimized SEO to drive long-term organic traffic.",
+                "Implemented remarketing and retention strategies for repeat customers.",
+                "Monitored sales funnel performance and scaled ad budgets strategically."
+              ]
+            }
+          ]
         },
         {
           title: "Key Results Achieved",

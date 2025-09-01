@@ -23,22 +23,14 @@ const ProjectDetailPage: React.FC = () => {
       </div>
     );
   }
-  
+
   const renderContent = (content: string) => {
     return <span className="text-gray-700 text-lg leading-relaxed" dangerouslySetInnerHTML={{ __html: content }} />;
   };
 
-  // Helper to safely access gallery images
   const getGalleryImage = (index: number) => {
     return Array.isArray(project.galleryImages) && project.galleryImages.length > index 
       ? project.galleryImages[index] 
-      : null;
-  };
-
-  // Helper to safely access content sections
-  const getSection = (index: number) => {
-    return Array.isArray(project.details?.sections) && project.details.sections.length > index
-      ? project.details.sections[index]
       : null;
   };
 
@@ -46,9 +38,9 @@ const ProjectDetailPage: React.FC = () => {
   const instagramImage = getGalleryImage(1);
   const amazonImage = getGalleryImage(2);
   const backendImage = getGalleryImage(3);
-
-  const howWeScaledSection = getSection(0);
-  const keyResultsSection = getSection(1);
+  
+  const howWeScaledSection = project.details.sections[0];
+  const keyResultsSection = project.details.sections[1];
 
 
   return (
@@ -97,46 +89,49 @@ const ProjectDetailPage: React.FC = () => {
               ))}
             </div>
           )}
-
-          {/* 3. Second Interspersed Image (Instagram) */}
-          {instagramImage && (
-              <div className="my-12">
-                  <img 
-                      src={instagramImage} 
-                      alt="Project Instagram presence"
-                      className="w-full h-auto rounded-xl shadow-lg" 
-                  />
-              </div>
-          )}
           
-          {/* 4. "How We Scaled" Section */}
+          {/* 3. "How We Scaled" Section */}
           {howWeScaledSection && (
               <div className="mb-12">
-                  <h2 className="text-3xl font-bold mb-4">{howWeScaledSection.title}</h2>
-                  {Array.isArray(howWeScaledSection.content) && (
-                    <ul className="space-y-4">
-                      {howWeScaledSection.content.map((item, i) => (
-                        <li key={i} className="flex items-start">
-                          <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
-                            <Check className="w-4 h-4 text-green-600" />
+                  <h2 className="text-3xl font-bold mb-6">{howWeScaledSection.title}</h2>
+                  <div className="space-y-8">
+                    {howWeScaledSection.subsections?.map((subsection, subIndex) => (
+                      <div key={subIndex}>
+                        <h3 className="text-2xl font-semibold mb-4">{subsection.subtitle}</h3>
+                        <ul className="space-y-4">
+                          {subsection.content.map((item, i) => (
+                            <li key={i} className="flex items-start">
+                              <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <Check className="w-4 h-4 text-blue-600" />
+                              </div>
+                              {renderContent(item)}
+                            </li>
+                          ))}
+                        </ul>
+
+                        {/* Insert images at specific points */}
+                        {subIndex === 1 && instagramImage && (
+                          <div className="my-12">
+                              <img 
+                                  src={instagramImage} 
+                                  alt="Project Instagram presence"
+                                  className="w-full h-auto rounded-xl shadow-lg" 
+                              />
                           </div>
-                          {renderContent(item)}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                        )}
+                        {subIndex === 3 && amazonImage && backendImage && (
+                          <div className="my-16 grid grid-cols-1 sm:grid-cols-2 gap-8">
+                              <img src={amazonImage} alt="Project Amazon listing" className="rounded-xl shadow-lg" />
+                              <img src={backendImage} alt="Project e-commerce backend" className="rounded-xl shadow-lg" />
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
               </div>
           )}
 
-          {/* 5. Last two images side-by-side (Amazon & Backend) */}
-          {amazonImage && backendImage && (
-              <div className="my-16 grid grid-cols-1 sm:grid-cols-2 gap-8">
-                  <img src={amazonImage} alt="Project Amazon listing" className="rounded-xl shadow-lg" />
-                  <img src={backendImage} alt="Project e-commerce backend" className="rounded-xl shadow-lg" />
-              </div>
-          )}
-
-          {/* 6. "Key Results" Section */}
+          {/* 4. "Key Results" Section */}
           {keyResultsSection && (
               <div className="mb-12">
                   <h2 className="text-3xl font-bold mb-4">{keyResultsSection.title}</h2>
