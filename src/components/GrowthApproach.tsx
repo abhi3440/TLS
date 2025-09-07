@@ -101,7 +101,7 @@ const GrowthApproach: React.FC = () => {
   ];
 
   return (
-    <section id="approach" className="py-20 bg-gray-50">
+    <section id="approach" className="pt-20 pb-0 bg-gray-50">
       <div className="container">
         <div 
           className="text-center mb-16"

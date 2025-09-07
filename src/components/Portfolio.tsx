@@ -5,7 +5,7 @@ import { projects } from '../data/projects.ts';
 
 const Portfolio: React.FC = () => {
   return (
-    <section id="portfolio" className="bg-gray-50 pt-20">
+    <section id="portfolio" className="bg-gray-50 pt-10">
       <div className="container py-16">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Portfolio</h1>
