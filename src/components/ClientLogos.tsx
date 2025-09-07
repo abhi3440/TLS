@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 
 // Import your specific logo images
-import logo1 from '../assets/logo1.png'; // Assuming .jpeg, adjust if .png or other
+import logo1 from '../assets/logo1.png';
 import logo2 from '../assets/logo2.png';
 import logo3 from '../assets/logo3.png';
-import logo4 from '../assets/logo4.png';
 
 const ClientLogos: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -35,41 +34,36 @@ const ClientLogos: React.FC = () => {
 
   const clientLogos = [
     { name: 'Client Logo 1', url: logo1 },
-    { name: 'Client Logo 2', url: logo2 },
     { name: 'Client Logo 3', url: logo3 },
-    { name: 'Client Logo 4', url: logo4 }
+    { name: 'Client Logo 2', url: logo2 }
+    
   ];
 
   return (
     <section className="py-20 bg-white">
       <div className="container">
-        <div 
-          className="text-center mb-12"
-          ref={sectionRef}
-        >
+        <div className="text-center mb-12" ref={sectionRef}>
           <h2 className="section-title">Brands That Trust Us</h2>
           <p className="section-subtitle">
             We've helped these amazing companies grow and scale
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+        {/* Updated grid for equal distribution */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 items-center justify-items-center">
           {clientLogos.map((client, index) => (
-            <div 
-              key={index} 
-              className="flex items-center justify-center p-4 transition-all duration-300 hover:scale-105"
+            <div
+              key={index}
+              className="flex items-center justify-center w-40 h-20 transition-all duration-300 hover:scale-105"
             >
-              <img 
-                src={client.url} 
-                alt={client.name} 
-                className="max-h-16 max-w-full object-contain"
+              <img
+                src={client.url}
+                alt={client.name}
+                className="max-h-full max-w-full object-contain"
               />
             </div>
           ))}
         </div>
-
-        {/* The "Client Success Stories" section you asked to remove was here */}
-
       </div>
     </section>
   );

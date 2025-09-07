@@ -50,20 +50,29 @@ const Navbar: React.FC = () => {
       >
         <div className="container flex items-center justify-between">
           <a href="#" className="flex items-center">
-            <img src={logo} alt="Logo" className="h-10 w-auto" style={{ maxHeight: '40px' }} />
-            <span className="ml-2 text-2xl font-bold text-blue-700">Tech Link Solutions</span>
+            <img
+              src={logo}
+              alt="Logo"
+              className="h-10 w-auto"
+              style={{ maxHeight: '40px' }}
+            />
+            <span className="ml-2 text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-400 bg-clip-text text-transparent">
+              Tech Link Solutions
+            </span>
           </a>
 
           <nav className="hidden md:flex space-x-8">
-            {['services', 'clients', 'approach', 'portfolio', 'contact'].map((item) => (
-              <button
-                key={item}
-                onClick={() => scrollToSection(item)}
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                {item.charAt(0).toUpperCase() + item.slice(1)}
-              </button>
-            ))}
+            {['services', 'clients', 'approach', 'portfolio', 'contact'].map(
+              (item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                >
+                  {item.charAt(0).toUpperCase() + item.slice(1)}
+                </button>
+              )
+            )}
           </nav>
 
           <button
@@ -86,15 +95,17 @@ const Navbar: React.FC = () => {
         {isOpen && (
           <div className="md:hidden bg-white">
             <div className="container py-4 space-y-3">
-              {['services', 'clients', 'approach', 'portfolio', 'contact'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item)}
-                  className="block w-full text-left py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors"
-                >
-                  {item.charAt(0).toUpperCase() + item.slice(1)}
-                </button>
-              ))}
+              {['services', 'clients', 'approach', 'portfolio', 'contact'].map(
+                (item) => (
+                  <button
+                    key={item}
+                    onClick={() => scrollToSection(item)}
+                    className="block w-full text-left py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                  >
+                    {item.charAt(0).toUpperCase() + item.slice(1)}
+                  </button>
+                )
+              )}
               <button
                 className="btn btn-primary w-full mt-4"
                 onClick={() => scrollToSection('contact')}

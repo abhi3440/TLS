@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { BarChart3, Users, Search, ShoppingBag, Store, MapPin } from 'lucide-react';
+import { BarChart3, Users, Search, Globe , Store, MapPin } from 'lucide-react';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -81,7 +81,7 @@ const Services: React.FC = () => {
 
   const services = [
     {
-      icon: <ShoppingBag size={28} />,
+      icon: <Globe size={28} />,
       title: "Website Building",
       description: "Custom, conversion-ready storefronts designed to maximize sales, speed, and user experience."
     },
